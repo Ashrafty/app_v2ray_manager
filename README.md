@@ -3,13 +3,39 @@
 ## Description
 V2Ray Manager is a Flutter-based mobile application designed to manage and control V2Ray proxy configurations. It provides a user-friendly interface for connecting to V2Ray servers, managing server configurations, monitoring traffic statistics, and viewing logs.
 
+<img src="https://github.com/Ashrafty/app_v2ray_manager/blob/main/images/Screenshot_20240729_063308.jpg?raw=true" alt="V2Ray Manager Home Screen" />
+
 ## Features
-- Connect/disconnect to V2Ray servers
-- Manage multiple V2Ray configurations
-- Monitor real-time traffic statistics
-- View connection logs
-- Customize settings (e.g., bypass LAN, blocked apps)
-- Dark mode support
+
+### 1. Server Management
+Easily add, edit, and delete V2Ray server configurations.
+
+<img src="https://github.com/Ashrafty/app_v2ray_manager/blob/main/images/Screenshot_20240729_063338.jpg?raw=true" alt="Server Management Screen" />
+
+### 2. Connection Control
+Connect and disconnect from V2Ray servers with a single tap.
+
+<img src="https://github.com/Ashrafty/app_v2ray_manager/blob/main/images/Screenshot_20240729_063308.jpg?raw=true" alt="Connection Control Interface" />
+
+### 3. Real-time Traffic Statistics
+Monitor your network usage with intuitive charts and graphs.
+
+<img src="https://github.com/Ashrafty/app_v2ray_manager/blob/main/images/Screenshot_20240729_063349.jpg?raw=true" alt="Traffic Statistics Screen" />
+
+### 4. Log Viewer
+View detailed connection logs for troubleshooting and monitoring.
+
+<img src="https://github.com/Ashrafty/app_v2ray_manager/blob/main/images/Screenshot_20240729_063401.jpg?raw=true" alt="Log Viewer Screen" />
+
+### 5. Custom Settings
+Customize app behavior with settings like bypass LAN and app-specific routing.
+
+<img src="https://github.com/Ashrafty/app_v2ray_manager/blob/main/images/Screenshot_20240729_063416.jpg?raw=true" alt="Settings Screen" />
+
+### 6. Dark Mode
+Enjoy a comfortable viewing experience with built-in dark mode support.
+
+<img src="https://github.com/Ashrafty/app_v2ray_manager/blob/main/images/Screenshot_20240729_063749.jpg?raw=true" alt="Side Navigation" />
 
 ## Technologies Used
 - Flutter: Cross-platform UI framework
@@ -55,19 +81,12 @@ lib/
 ## Main Components and Their Roles
 
 1. **Models**: Define data structures for V2Ray configurations and traffic statistics.
-
 2. **Providers**: Manage the state of the application, including V2Ray connections, settings, and themes.
-
 3. **Screens**: Implement the main UI pages of the application.
-
 4. **Theme**: Define the app's visual style and theme switching functionality.
-
 5. **Utils**: Contain utility functions and constants used throughout the app.
-
 6. **Widgets**: Reusable UI components used across different screens.
-
 7. **app.dart**: Defines the main application structure and routing.
-
 8. **main.dart**: Entry point of the application, sets up providers and runs the app.
 
 ## Building and Running the App
