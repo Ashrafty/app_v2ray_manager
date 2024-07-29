@@ -19,6 +19,10 @@ class ServersScreen extends StatelessWidget {
             icon: const Icon(Icons.add),
             onPressed: () => _showAddConfigDialog(context),
           ),
+          IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _showImportDialog(context),
+          ),
         ],
       ),
       body: Consumer<V2RayProvider>(
@@ -37,6 +41,7 @@ class ServersScreen extends StatelessWidget {
                 onConnect: () => _connectToServer(context, v2rayProvider, config),
                 onEdit: () => _showEditConfigDialog(context, v2rayProvider, config),
                 onDelete: () => _deleteConfig(context, v2rayProvider, config),
+                onExport: () => _exportConfig(context, v2rayProvider, config),
               );
             },
           );
@@ -108,6 +113,57 @@ class ServersScreen extends StatelessWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  void _showImportDialog(BuildContext context) {
+    final textController = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Import Configuration'),
+        content: TextField(
+          controller: textController,
+          decoration: const InputDecoration(hintText: 'Enter configuration URL'),
+        ),
+        actions: [
+          TextButton(
+            child: const Text('Cancel'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          TextButton(
+            child: const Text('Import'),
+            onPressed: () {
+              final provider = Provider.of<V2RayProvider>(context, listen: false);
+              provider.importConfig(textController.text).then((_) {
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Configuration imported successfully')),
+                );
+              }).catchError((error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Error importing configuration: $error')),
+                );
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _exportConfig(BuildContext context, V2RayProvider provider, V2RayConfig config) {
+    final shareLink = provider.exportConfig(config);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Configuration exported: $shareLink'),
+        action: SnackBarAction(
+          label: 'Copy',
+          onPressed: () {
+            // TODO: Implement clipboard functionality
+          },
+        ),
       ),
     );
   }

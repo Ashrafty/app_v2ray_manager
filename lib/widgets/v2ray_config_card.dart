@@ -6,6 +6,7 @@ class V2RayConfigCard extends StatelessWidget {
   final VoidCallback? onConnect;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
+  final VoidCallback? onExport;
 
   const V2RayConfigCard({
     Key? key,
@@ -13,6 +14,7 @@ class V2RayConfigCard extends StatelessWidget {
     this.onConnect,
     this.onEdit,
     this.onDelete,
+    this.onExport,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,10 @@ class V2RayConfigCard extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.edit),
               onPressed: onEdit,
+            ),
+            IconButton(
+              icon: const Icon(Icons.share),
+              onPressed: onExport,
             ),
             IconButton(
               icon: const Icon(Icons.delete),

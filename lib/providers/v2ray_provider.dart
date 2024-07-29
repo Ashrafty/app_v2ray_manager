@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import '../models/v2ray_config.dart';
 import '../utils/constants.dart';
+import '../utils/v2ray_helper.dart';
 
 class V2RayProvider with ChangeNotifier {
   final FlutterV2ray _flutterV2ray = FlutterV2ray(
@@ -31,7 +32,7 @@ class V2RayProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _saveCofigs() async {
+  Future<void> _saveConfigs() async {
     final prefs = await SharedPreferences.getInstance();
     final savedConfigsJson = _savedConfigs.map((config) => jsonEncode(config.toJson())).toList();
     await prefs.setStringList(AppConstants.prefKeySavedConfigs, savedConfigsJson);
@@ -81,15 +82,28 @@ class V2RayProvider with ChangeNotifier {
     }
   }
 
+  Future<void> importConfig(String url) async {
+    final config = V2RayHelper.parseFromURL(url);
+    if (config != null) {
+      addConfig(config);
+    } else {
+      throw Exception('Invalid configuration URL');
+    }
+  }
+
+  String exportConfig(V2RayConfig config) {
+    return V2RayHelper.generateShareLink(config);
+  }
+
   void addConfig(V2RayConfig config) {
     _savedConfigs.add(config);
-    _saveCofigs();
+    _saveConfigs();
     notifyListeners();
   }
 
   void removeConfig(V2RayConfig config) {
     _savedConfigs.remove(config);
-    _saveCofigs();
+    _saveConfigs();
     notifyListeners();
   }
 
@@ -97,7 +111,7 @@ class V2RayProvider with ChangeNotifier {
     final index = _savedConfigs.indexOf(oldConfig);
     if (index != -1) {
       _savedConfigs[index] = newConfig;
-      _saveCofigs();
+      _saveConfigs();
       notifyListeners();
     }
   }
