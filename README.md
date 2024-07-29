@@ -132,7 +132,7 @@ flutter build ios --release
 Contributions to the V2Ray Manager project are welcome. Please feel free to submit issues, fork the repository and send pull requests!
 
 ## License
-[MIT(https://github.com/Ashrafty/app_v2ray_manager/blob/main/LICENSE)]
+[[MIT](https://github.com/Ashrafty/app_v2ray_manager/blob/main/LICENSE)]
 
 ## Disclaimer
 This application is for educational purposes only. Ensure you comply with all relevant laws and regulations when using VPN or proxy services.
