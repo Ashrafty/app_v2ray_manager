@@ -100,7 +100,7 @@ lib/
 1. Clone the repository:
    ```
    git clone https://github.com/Ashrafty/app_v2ray_manager.git
-   cd v2ray-manager
+   cd app_v2ray_manager
    ```
 
 2. Get the dependencies:
