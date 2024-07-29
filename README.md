@@ -73,14 +73,14 @@ lib/
 ## Building and Running the App
 
 ### Prerequisites
-- Flutter SDK (latest stable version)
+- Flutter SDK (version 3.19.5)
 - Android Studio or VS Code with Flutter extensions
 - An Android or iOS device/emulator
 
 ### Steps to Run
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/v2ray-manager.git
+   git clone https://github.com/Ashrafty/app_v2ray_manager.git
    cd v2ray-manager
    ```
 
