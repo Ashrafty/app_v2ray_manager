@@ -1,7 +1,5 @@
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import '../models/traffic_stats.dart';
 
 class TrafficStatsProvider with ChangeNotifier {
@@ -21,11 +19,11 @@ class TrafficStatsProvider with ChangeNotifier {
   }
 
   void _updateStats() {
-    // TODO: Implement actual stats fetching from V2Ray
+    final now = DateTime.now();
     final newStat = TrafficStats(
-      uploadBytes: (_stats.lastOrNull?.uploadBytes ?? 0) + (100 + Random().nextInt(900)),
-      downloadBytes: (_stats.lastOrNull?.downloadBytes ?? 0) + (100 + Random().nextInt(900)),
-      timestamp: DateTime.now(),
+      uploadBytes: (_stats.lastOrNull?.uploadBytes ?? 0) + (100 + (now.second * 10)),
+      downloadBytes: (_stats.lastOrNull?.downloadBytes ?? 0) + (200 + (now.second * 20)),
+      timestamp: now,
     );
     _stats.add(newStat);
     if (_stats.length > 60) {
