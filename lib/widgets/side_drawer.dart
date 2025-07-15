@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SideDrawer extends StatelessWidget {
-  const SideDrawer({Key? key}) : super(key: key);
+  const SideDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {

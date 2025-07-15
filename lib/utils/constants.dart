@@ -7,6 +7,7 @@ class AppConstants {
   static const String prefKeyBypassLAN = 'bypassLAN';
   static const String prefKeyBlockedApps = 'blockedApps';
   static const String prefKeySavedConfigs = 'savedConfigs';
+  static const String prefKeyLogs = 'logs';
 
   // Error messages
   static const String errorNoConfigs = 'No configurations found';

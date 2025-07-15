@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import '../models/v2ray_config.dart';
 
@@ -14,7 +15,7 @@ class V2RayHelper {
       }
       // Add more protocols as needed
     } catch (e) {
-      print('Error parsing URL: $e');
+      debugPrint('Error parsing URL: $e');
     }
     return null;
   }
@@ -96,7 +97,7 @@ class V2RayHelper {
         network: jsonConfig['network'] ?? 'tcp',
       );
     } catch (e) {
-      print('Error importing configuration file: $e');
+      debugPrint('Error importing configuration file: $e');
       return null;
     }
   }

@@ -6,12 +6,11 @@ import 'screens/home_screen.dart';
 import 'screens/servers_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/logs_screen.dart';
-import 'screens/traffic_stats_screen.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'widgets/side_drawer.dart';
 
 class V2RayManagerApp extends StatelessWidget {
-  const V2RayManagerApp({Key? key}) : super(key: key);
+  const V2RayManagerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +29,10 @@ class V2RayManagerApp extends StatelessWidget {
 }
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
@@ -42,7 +41,6 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const ServersScreen(),
-    const TrafficStatsScreen(),
     const LogsScreen(),
   ];
 

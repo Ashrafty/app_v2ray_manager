@@ -43,7 +43,7 @@ class V2RayConfig {
     );
   }
 
-  String get fullConfiguration {
+  String getFullConfiguration({List<String>? bypassSubnets, bool bypassLAN = true}) {
     final Map<String, dynamic> config = {
       "inbounds": [
         {
@@ -57,6 +57,7 @@ class V2RayConfig {
       ],
       "outbounds": [
         {
+          "tag": "proxy",
           "protocol": "vmess",
           "settings": {
             "vnext": [
@@ -76,10 +77,70 @@ class V2RayConfig {
           "streamSettings": {
             "network": network
           }
+        },
+        {
+          "tag": "direct",
+          "protocol": "freedom",
+          "settings": {}
+        },
+        {
+          "tag": "block",
+          "protocol": "blackhole",
+          "settings": {
+            "response": {
+              "type": "http"
+            }
+          }
         }
       ]
     };
 
+    // Add routing rules if bypass subnets are configured
+    if ((bypassSubnets != null && bypassSubnets.isNotEmpty) || bypassLAN) {
+      final List<Map<String, dynamic>> rules = [];
+
+      // Add bypass subnet rules
+      if (bypassSubnets != null && bypassSubnets.isNotEmpty) {
+        rules.add({
+          "type": "field",
+          "ip": bypassSubnets,
+          "outboundTag": "direct"
+        });
+      }
+
+      // Add LAN bypass rules if enabled
+      if (bypassLAN) {
+        rules.add({
+          "type": "field",
+          "ip": [
+            "127.0.0.0/8",
+            "10.0.0.0/8",
+            "172.16.0.0/12",
+            "192.168.0.0/16",
+            "169.254.0.0/16",
+            "224.0.0.0/4",
+            "240.0.0.0/4"
+          ],
+          "outboundTag": "direct"
+        });
+      }
+
+      // Default rule - route everything else through proxy
+      rules.add({
+        "type": "field",
+        "network": "tcp,udp",
+        "outboundTag": "proxy"
+      });
+
+      config["routing"] = {
+        "strategy": "rules",
+        "rules": rules
+      };
+    }
+
     return json.encode(config);
   }
+
+  // Keep backward compatibility
+  String get fullConfiguration => getFullConfiguration();
 }

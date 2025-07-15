@@ -1,4 +1,4 @@
-import 'package:app_v2ray_manager/providers/traffic_stats_provider.dart';
+import 'package:app_v2ray_manager/providers/logs_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app.dart';
@@ -8,13 +8,21 @@ import 'theme/theme_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Create provider instances
+  final v2rayProvider = V2RayProvider();
+  final logsProvider = LogsProvider();
+
+  // Wire up the callbacks
+  v2rayProvider.setLogCallback(logsProvider.addLog);
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => V2RayProvider()),
+        ChangeNotifierProvider.value(value: v2rayProvider),
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => TrafficStatsProvider()),
+        ChangeNotifierProvider.value(value: logsProvider),
       ],
       child: const V2RayManagerApp(),
     ),

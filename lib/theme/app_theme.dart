@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static final Color _primaryColor = Colors.purple;
-  static final Color _accentColor = Colors.purpleAccent;
+  static const Color _primaryColor = Colors.purple;
+  static const Color _accentColor = Colors.purpleAccent;
 
   static final ThemeData lightTheme = ThemeData(
     primaryColor: _primaryColor,
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: _primaryColor,
       secondary: _accentColor,
     ),
     textTheme: GoogleFonts.robotoTextTheme(),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: _primaryColor,
       foregroundColor: Colors.white,
     ),
@@ -25,7 +25,7 @@ class AppTheme {
 
   static final ThemeData darkTheme = ThemeData(
     primaryColor: _primaryColor,
-    colorScheme: ColorScheme.dark(
+    colorScheme: const ColorScheme.dark(
       primary: _primaryColor,
       secondary: _accentColor,
     ),

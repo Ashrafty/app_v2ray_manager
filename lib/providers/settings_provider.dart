@@ -4,9 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsProvider with ChangeNotifier {
   late SharedPreferences _prefs;
-  bool _bypassLAN = true;
+  bool _bypassLAN = false;
   List<String> _blockedApps = [];
-  List<String> _bypassSubnets = ['127.0.0.1/8', '192.168.0.0/16'];
+  List<String> _bypassSubnets = [];
 
   bool get bypassLAN => _bypassLAN;
   List<String> get blockedApps => _blockedApps;
@@ -18,9 +18,9 @@ class SettingsProvider with ChangeNotifier {
 
   Future<void> _loadSettings() async {
     _prefs = await SharedPreferences.getInstance();
-    _bypassLAN = _prefs.getBool('bypassLAN') ?? true;
+    _bypassLAN = _prefs.getBool('bypassLAN') ?? false;
     _blockedApps = _prefs.getStringList('blockedApps') ?? [];
-    _bypassSubnets = _prefs.getStringList('bypassSubnets') ?? ['127.0.0.1/8', '192.168.0.0/16'];
+    _bypassSubnets = _prefs.getStringList('bypassSubnets') ?? [];
     notifyListeners();
   }
 
